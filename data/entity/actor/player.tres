@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Actor" load_steps=3 format=3 uid="uid://5u84swdwxojs"]
+
+[ext_resource type="Script" path="res://src/entity/actor.gd" id="1_5vnpq"]
+[ext_resource type="Texture2D" uid="uid://du40homt1hpkv" path="res://assets/img/player.png" id="2_s6xx2"]
+
+[resource]
+script = ExtResource("1_5vnpq")
+id = "player"
+name = "Player"
+sprite = ExtResource("2_s6xx2")

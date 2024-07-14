@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Tile" load_steps=4 format=3 uid="uid://c4waox82ptdp4"]
+
+[ext_resource type="Script" path="res://src/entity/tile.gd" id="1_eyl2v"]
+[ext_resource type="Texture2D" uid="uid://d0twxqbsnv7o1" path="res://assets/img/kenney/roadTextures_tilesheet.png" id="2_blyle"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6w1r"]
+atlas = ExtResource("2_blyle")
+region = Rect2(576, 0, 64, 64)
+
+[resource]
+script = ExtResource("1_eyl2v")
+id = "road"
+name = "Road"
+sprite = SubResource("AtlasTexture_b6w1r")

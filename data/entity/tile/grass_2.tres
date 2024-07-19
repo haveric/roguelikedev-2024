@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Tile" load_steps=6 format=3 uid="uid://crq1vi7p3n812"]
+
+[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_ob67p"]
+[ext_resource type="Script" path="res://src/component/components/randomly_place.gd" id="2_3rflr"]
+[ext_resource type="Script" path="res://src/entity/tile.gd" id="3_adswy"]
+[ext_resource type="Texture2D" uid="uid://c0ukcnvyr0qhs" path="res://assets/img/rebeccagood/grass/grass_2.png" id="4_loj4b"]
+
+[sub_resource type="Resource" id="Resource_bsrrc"]
+script = ExtResource("2_3rflr")
+
+[resource]
+script = ExtResource("3_adswy")
+id = "grass_2"
+name = "Grass"
+sprite = ExtResource("4_loj4b")
+default_components = Array[ExtResource("1_ob67p")]([SubResource("Resource_bsrrc")])

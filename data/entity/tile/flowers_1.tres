@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Tile" load_steps=6 format=3 uid="uid://c3kwa387phc3t"]
+
+[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_wrgxa"]
+[ext_resource type="Script" path="res://src/component/components/randomly_place.gd" id="2_e5lkf"]
+[ext_resource type="Script" path="res://src/entity/tile.gd" id="3_on448"]
+[ext_resource type="Texture2D" uid="uid://ei7rp80u3xcr" path="res://assets/img/rebeccagood/grass/flower_pink.png" id="4_7p00x"]
+
+[sub_resource type="Resource" id="Resource_bsrrc"]
+script = ExtResource("2_e5lkf")
+
+[resource]
+script = ExtResource("3_on448")
+id = "flowers_1"
+name = "Flowers"
+sprite = ExtResource("4_7p00x")
+default_components = Array[ExtResource("1_wrgxa")]([SubResource("Resource_bsrrc")])

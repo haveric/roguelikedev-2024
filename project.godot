@@ -27,7 +27,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Loader="*res://src/entity/entity_loader.gd"
+ComponentsLoaderPreload="*res://src/component/component_loader.gd"
+EntityLoaderPreload="*res://src/entity/entity_loader.gd"
 
 [display]
 
@@ -84,5 +85,10 @@ move_down_right={
 wait={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194443,"key_label":0,"unicode":53,"location":0,"echo":false,"script":null)
+]
+}
+debug_gen={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194332,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }

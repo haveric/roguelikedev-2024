@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Tile" load_steps=7 format=3 uid="uid://chch6kdj70xc4"]
+
+[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_2psk2"]
+[ext_resource type="Script" path="res://src/entity/tile.gd" id="1_h6s2r"]
+[ext_resource type="Script" path="res://src/component/components/blocks_movement.gd" id="2_npgrf"]
+[ext_resource type="Texture2D" uid="uid://oele3d1nsn52" path="res://assets/img/kenney/medieval_tilesheet.png" id="2_rgncs"]
+
+[sub_resource type="Resource" id="Resource_2mc5r"]
+script = ExtResource("2_npgrf")
+blocks_movement = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l0xa"]
+atlas = ExtResource("2_rgncs")
+region = Rect2(128, 320, 64, 64)
+
+[resource]
+script = ExtResource("1_h6s2r")
+id = "tree_2"
+name = "Trees"
+sprite = SubResource("AtlasTexture_3l0xa")
+default_components = Array[ExtResource("1_2psk2")]([SubResource("Resource_2mc5r")])

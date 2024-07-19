@@ -1,10 +1,17 @@
-[gd_resource type="Resource" script_class="Actor" load_steps=3 format=3 uid="uid://5u84swdwxojs"]
+[gd_resource type="Resource" script_class="Actor" load_steps=6 format=3 uid="uid://5u84swdwxojs"]
 
 [ext_resource type="Script" path="res://src/entity/actor.gd" id="1_5vnpq"]
-[ext_resource type="Texture2D" uid="uid://du40homt1hpkv" path="res://assets/img/player.png" id="2_s6xx2"]
+[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_v5ohs"]
+[ext_resource type="Script" path="res://src/component/components/blocks_movement.gd" id="2_nrq4c"]
+[ext_resource type="Texture2D" uid="uid://du40homt1hpkv" path="res://assets/img/rebeccagood/player.png" id="2_s6xx2"]
+
+[sub_resource type="Resource" id="Resource_di2pq"]
+script = ExtResource("2_nrq4c")
+blocks_movement = true
 
 [resource]
 script = ExtResource("1_5vnpq")
 id = "player"
 name = "Player"
 sprite = ExtResource("2_s6xx2")
+default_components = Array[ExtResource("1_v5ohs")]([SubResource("Resource_di2pq")])

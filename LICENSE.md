@@ -1,4 +1,4 @@
-This EXCLUDES all code in addons and all art under assets. 
+This License EXCLUDES all code in /addons and all art under /assets and /docs.
 Individual licenses can be found within those directories.
 
 MIT License

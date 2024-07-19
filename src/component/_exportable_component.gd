@@ -1,0 +1,1 @@
+class_name _ExportableComponent extends _Component

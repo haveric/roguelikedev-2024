@@ -20,4 +20,7 @@ static func create(name: String, json:Dictionary = {}) -> _Entity:
 	if entity_map.has(name):
 		entity = entity_map.get(name).clone(json)
 
+	else:
+		print("ERROR: Missing Entity id: ", name)
+
 	return entity

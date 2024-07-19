@@ -1,29 +1,32 @@
 class_name _Entity extends Resource
 
+@export_category("Entity")
 @export var id:String
 @export var name:String
 @export var sprite:Texture2D
 
-var type:String
+@export_category("Components")
+@export var default_components: Array[_ExportableComponent]
 
+var type:String
 var components:Dictionary
 
 func _init(_type: String, json:Dictionary = {}) -> void:
 	type = _type
 
-	if json.has("position"): #TODO: Make this dynamic
-		var position = json.get("position")
-		components.get_or_add("position", Position.new(position.x, position.y))
-
-	# TODO: Load json into components
+	load_components(json)
 
 func clone(json) -> _Entity:
-	var entity = self.duplicate()
+	var entity: _Entity = self.duplicate()
 
-	if json.has("position"): #TODO: Make this dynamic
-		var position = json.get("position")
-		entity.components.get_or_add("position", Position.new(position.x, position.y))
-
-	# TODO: Load json into components
+	entity.load_components(json)
 
 	return entity
+
+func load_components(json: Dictionary = {}) -> void:
+	for component in default_components:
+		var clone = component.duplicate()
+		clone.set_parent_entity(self)
+		components.get_or_add(clone.id, clone)
+
+	ComponentLoader.load_from_json(self, components, json)

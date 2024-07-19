@@ -5,6 +5,6 @@ var entity: _Entity
 func _init(_entity: _Entity) -> void:
 	entity = _entity
 
-func perform() -> _Action:
+func perform(map: Map) -> _Action:
 	print("Error: Not Implemented")
 	return null

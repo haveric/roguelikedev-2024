@@ -18,7 +18,14 @@ func set_tile_position() -> void:
 		x = position.x
 		y = position.y
 
-		global_position = Vector2(x * 64, y * 64)
+		var x_offset = 0
+		var y_offset = 0
+		if entity.components.has("randomly_place"):
+			var randomly_place: RandomlyPlace = entity.components.get("randomly_place")
+			x_offset = randomly_place.x_offset
+			y_offset = randomly_place.y_offset
+
+		global_position = Vector2(x * 128 + x_offset, y * 128 + y_offset)
 
 func set_sprite(texture:Texture2D) -> void:
 	sprite.texture = texture

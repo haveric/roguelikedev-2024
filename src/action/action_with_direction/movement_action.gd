@@ -4,6 +4,9 @@ func perform(map: Map) -> _Action:
 	if !entity.components.has("position"):
 		return UnableToPerformAction.new(entity, "Entity doesn't have a position.")
 
+	if dx == 0 && dy == 0: # Wait
+		return self
+
 	var position: Position = entity.components.get("position")
 
 	var dest_x = position.x + dx

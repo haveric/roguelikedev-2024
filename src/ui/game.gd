@@ -18,7 +18,7 @@ func new_game() -> void:
 	camera.make_current.call_deferred()
 
 func _physics_process(_delta: float) -> void:
-	var action: _Action = await input_handler.get_action(player)
+	var action: _Action = await input_handler.get_action(player, _delta)
 	if action:
 		var performed_action = action.perform(map)
 

@@ -93,7 +93,7 @@ func property_to_string(value, col_index : int) -> String:
 	if col_index == 0:
 		if prop_names[col_index] == "resource_path":
 			return value.get_file().get_basename()
-	
+
 	if prop_types[col_index] is PackedStringArray:
 		return prop_types[col_index][value].capitalize()
 
@@ -118,7 +118,7 @@ func property_to_string(value, col_index : int) -> String:
 			for k in dict:
 				if dict[k] == value:
 					return change_name_to_format(k, enum_format[0], enum_format[1])
-		
+
 	return str(value)
 
 
@@ -159,7 +159,7 @@ func create_property_line_for_prop(col_index : int) -> String:
 func _escape_forbidden_enum_names(string : String) -> String:
 	if ClassDB.class_exists(string):
 		return string + "_"
-	
+
 	# Not in ClassDB, but are engine types and can be property names
 	if string in [
 		"Color", "String", "Plane", "Projection",
@@ -196,18 +196,18 @@ func generate_script(entries, has_classname = true) -> GDScript:
 #
 #	else:
 	source = "extends Resource\r\n\r\n"
-	
+
 	# Enums
 	uniques = get_uniques(entries)
 	for i in prop_types.size():
 		if prop_types[i] == PropType.ENUM:
 			source += create_enum_for_prop(i)
-	
+
 	# Properties
 	for i in prop_names.size():
 		if (prop_names[i] != "resource_path") and (prop_names[i] != "resource_name"):
 			source += create_property_line_for_prop(i)
-	
+
 	var created_script = GDScript.new()
 	created_script.source_code = source
 	created_script.reload()
@@ -218,10 +218,10 @@ func strings_to_resource(strings : Array):
 	var new_res = new_script.new()
 	for j in min(prop_names.size(), strings.size()):
 		new_res.set(prop_names[j], string_to_property(strings[j], j))
-	
+
 	if prop_used_as_filename != "":
 		new_res.resource_path = edited_path.get_basename() + "/" + new_res.get(prop_used_as_filename) + ".tres"
-	
+
 	return new_res
 
 
@@ -230,7 +230,7 @@ func resource_to_strings(res : Resource):
 	strings.resize(prop_names.size())
 	for i in prop_names.size():
 		strings[i] = property_to_string(res.get(prop_names[i]), i)
-	
+
 	return PackedStringArray(strings)
 
 
@@ -246,7 +246,7 @@ func get_uniques(entries : Array) -> Dictionary:
 				cur_value = entries[j][i].capitalize().to_upper().replace(" ", "_")
 				if cur_value == "":
 					cur_value = "N_A"
-				
+
 				if !result[i].has(cur_value):
 					result[i][cur_value] = result[i].size()
 
@@ -288,5 +288,5 @@ static func get_resource_property_types(res : Resource, properties : Array) -> A
 
 			else:
 				result[found] = TYPE_MAP.get(x["type"], PropType.STRING)
-	
+
 	return result

@@ -21,5 +21,9 @@ func _physics_process(_delta: float) -> void:
 	var action: _Action = await input_handler.get_action(player)
 	if action:
 		var performed_action = action.perform(map)
+
+		if performed_action is NoAction:
+			return
+
 		if performed_action is UnableToPerformAction:
 			print(performed_action.reason)

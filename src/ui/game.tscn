@@ -26,8 +26,8 @@ script = ExtResource("3_8jyjy")
 script = ExtResource("3_j41s7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Game/Map"]
-position = Vector2(1920, 1080)
 texture = ExtResource("5_pfiwo")
+offset = Vector2(1920, 1080)
 
 [node name="MapTiles" type="Node" parent="Game/Map"]
 

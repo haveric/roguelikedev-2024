@@ -1,7 +1,5 @@
 class_name BSPGenerator extends Node
 
-static var i_roads:Array
-static var j_roads:Array
 static var map: Map
 
 static func generate(_map: Map) -> void:
@@ -9,7 +7,6 @@ static func generate(_map: Map) -> void:
 
 	bsp_split_horizontal(Rect2i(0, 0, map.width, map.height))
 
-	#entity = EntityLoader.create("road", {"position": {"x": i, "y": j}})
 	var entity
 	for i in range(map.width):
 		for j in range(map.height):

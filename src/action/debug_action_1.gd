@@ -5,4 +5,4 @@ func perform(map: Map) -> _Action:
 	map.init_map(map.width, map.height, map.player, map.camera)
 	map.generate()
 
-	return self
+	return NoAction.new(entity)

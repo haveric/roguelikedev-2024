@@ -19,6 +19,11 @@ func get_action(player: _Entity) -> _Action:
 			var offset: Vector2i = directions[direction]
 			action = MovementAction.new(player, offset.x, offset.y)
 
+	if Input.is_action_just_pressed("zoom_out"):
+		return ZoomAction.new(player, ZoomAction.ZoomDirection.OUT)
+	if Input.is_action_just_pressed("zoom_in"):
+		return ZoomAction.new(player, ZoomAction.ZoomDirection.IN)
+
 	if Input.is_action_just_pressed("debug_gen"):
 		action = DebugAction1.new(player)
 

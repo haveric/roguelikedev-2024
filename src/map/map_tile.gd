@@ -31,6 +31,3 @@ func set_tile_position() -> void:
 
 func set_sprite(texture:Texture2D) -> void:
 	sprite.texture = texture
-
-func _physics_process(delta: float) -> void:
-	set_tile_position() # TODO: Update this once when position changes, not every physics process

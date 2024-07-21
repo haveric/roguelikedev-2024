@@ -29,5 +29,6 @@ func perform(map: Map) -> _Action:
 				return UnableToPerformAction.new(entity, "There's a " + tile_entity.name + " in the way!")
 
 	position.move(dx, dy)
+	entity.map_tile.set_tile_position()
 
 	return self

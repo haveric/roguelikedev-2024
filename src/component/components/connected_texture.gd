@@ -10,12 +10,12 @@ func parse_json(json: Dictionary = {}) -> void:
 	if json.has("orthogonal_texture"):
 		orthogonal_texture = json.orthogonal_texture
 
-func get_sprite(map: Map, x: int, y: int) -> Texture2D:
+func get_sprite(map: Map, tiles: Array, x: int, y: int) -> Texture2D:
 	var atlas_texture = AtlasTexture.new()
 	if orthogonal_texture:
 		atlas_texture.atlas = orthogonal_texture.atlas
 
-		var current_tile = map.tiles[x][y]
+		var current_tile = tiles[x][y]
 		var entity_id = current_tile.entity.id
 
 		var left_tile
@@ -24,18 +24,18 @@ func get_sprite(map: Map, x: int, y: int) -> Texture2D:
 		var bottom_tile
 
 		if x - 1 >= 0:
-			left_tile = map.tiles[x-1][y]
+			left_tile = tiles[x-1][y]
 		if x + 1 < map.width:
-			right_tile = map.tiles[x+1][y]
+			right_tile = tiles[x+1][y]
 		if y - 1 >= 0:
-			top_tile = map.tiles[x][y-1]
+			top_tile = tiles[x][y-1]
 		if y + 1 < map.height:
-			bottom_tile = map.tiles[x][y+1]
+			bottom_tile = tiles[x][y+1]
 
-		var left = left_tile && left_tile.entity.id == entity_id
-		var right = right_tile && right_tile.entity.id == entity_id
-		var top = top_tile && top_tile.entity.id == entity_id
-		var bottom = bottom_tile && bottom_tile.entity.id == entity_id
+		var left = left_tile && left_tile.entity && left_tile.entity.id == entity_id
+		var right = right_tile && right_tile.entity && right_tile.entity.id == entity_id
+		var top = top_tile && top_tile.entity && top_tile.entity.id == entity_id
+		var bottom = bottom_tile && bottom_tile.entity && bottom_tile.entity.id == entity_id
 
 		if left && right && top && bottom:
 			atlas_texture.region = get_rect(1, 1) # Center

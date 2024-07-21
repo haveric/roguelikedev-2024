@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1h7yhqilduwh"]
+[gd_scene load_steps=5 format=3 uid="uid://d1h7yhqilduwh"]
 
 [ext_resource type="Script" path="res://src/ui/game_root.gd" id="1_bmher"]
 [ext_resource type="Script" path="res://src/ui/game.gd" id="1_u45wv"]
 [ext_resource type="Script" path="res://src/event/input_handler.gd" id="3_8jyjy"]
 [ext_resource type="Script" path="res://src/map/map.gd" id="3_j41s7"]
-[ext_resource type="Texture2D" uid="uid://6kak7piyov44" path="res://assets/img/rebeccagood/background_grass.jpg" id="5_pfiwo"]
 
 [node name="GameRoot" type="Control"]
 layout_mode = 3
@@ -25,11 +24,9 @@ script = ExtResource("3_8jyjy")
 [node name="Map" type="Node2D" parent="Game"]
 script = ExtResource("3_j41s7")
 
-[node name="Sprite2D" type="Sprite2D" parent="Game/Map"]
-texture = ExtResource("5_pfiwo")
-offset = Vector2(1920, 1080)
+[node name="GroundTiles" type="Node" parent="Game/Map"]
 
-[node name="MapTiles" type="Node" parent="Game/Map"]
+[node name="FurnitureTiles" type="Node" parent="Game/Map"]
 
 [node name="EntityTiles" type="Node" parent="Game/Map"]
 

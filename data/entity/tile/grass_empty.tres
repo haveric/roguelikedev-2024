@@ -1,16 +1,19 @@
-[gd_resource type="Resource" script_class="Tile" load_steps=5 format=3 uid="uid://54yxp1u6m1u1"]
+[gd_resource type="Resource" script_class="Tile" load_steps=7 format=3 uid="uid://54yxp1u6m1u1"]
 
 [ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_ndxie"]
 [ext_resource type="Script" path="res://src/entity/tile.gd" id="1_wfrco"]
-[ext_resource type="Texture2D" uid="uid://c6xiftwsji8f5" path="res://assets/img/rebeccagood/road.png" id="3_a20co"]
+[ext_resource type="Script" path="res://src/component/components/tilable.gd" id="2_688q6"]
+[ext_resource type="Texture2D" uid="uid://pu4utki42xc6" path="res://assets/img/rebeccagood/background_grass_tilable.jpg" id="3_wlgwo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mau5p"]
-atlas = ExtResource("3_a20co")
-region = Rect2(384, 384, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqffl"]
+atlas = ExtResource("3_wlgwo")
+
+[sub_resource type="Resource" id="Resource_q2a7m"]
+script = ExtResource("2_688q6")
+tilable_texture = SubResource("AtlasTexture_aqffl")
 
 [resource]
 script = ExtResource("1_wfrco")
 id = "grass_empty"
 name = "Grass"
-sprite = SubResource("AtlasTexture_mau5p")
-default_components = Array[ExtResource("1_ndxie")]([])
+default_components = Array[ExtResource("1_ndxie")]([SubResource("Resource_q2a7m")])

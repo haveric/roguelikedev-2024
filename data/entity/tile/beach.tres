@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Tile" load_steps=7 format=3 uid="uid://cjhxlsgtirsjs"]
+
+[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_undtb"]
+[ext_resource type="Script" path="res://src/component/components/randomly_place.gd" id="2_giu0d"]
+[ext_resource type="Script" path="res://src/entity/tile.gd" id="3_3ol42"]
+[ext_resource type="Texture2D" uid="uid://d0twxqbsnv7o1" path="res://assets/img/kenney/roadTextures_tilesheet.png" id="4_xlkwc"]
+
+[sub_resource type="Resource" id="Resource_bsrrc"]
+script = ExtResource("2_giu0d")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sx3k"]
+atlas = ExtResource("4_xlkwc")
+region = Rect2(128, 256, 128, 128)
+
+[resource]
+script = ExtResource("3_3ol42")
+id = "beach"
+name = "Beach"
+sprite = SubResource("AtlasTexture_5sx3k")
+default_components = Array[ExtResource("1_undtb")]([SubResource("Resource_bsrrc")])

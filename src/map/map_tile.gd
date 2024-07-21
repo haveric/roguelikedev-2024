@@ -6,14 +6,15 @@ class_name MapTile extends Node2D
 @onready var entity: _Entity
 
 func _ready() -> void:
-	set_sprite(entity.sprite)
+	if entity:
+		set_sprite(entity.sprite)
 	set_tile_position()
 
 func set_entity(_entity:_Entity) -> void:
 	entity = _entity
 
 func set_tile_position() -> void:
-	if entity.components.has("position"):
+	if entity && entity.components.has("position"):
 		var position:Position = entity.components.get("position")
 		x = position.x
 		y = position.y

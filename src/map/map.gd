@@ -1,6 +1,7 @@
 class_name Map extends Node2D
 
-@onready var map_tiles_node: Node = $MapTiles
+@onready var ground_tiles_node: Node = $GroundTiles
+@onready var furniture_tiles_node: Node = $FurnitureTiles
 @onready var entity_tiles_node: Node = $EntityTiles
 @onready var item_tiles_node: Node = $ItemTiles
 var packed_map_tile: PackedScene = preload("res://src/map/map_tile.tscn")
@@ -9,7 +10,8 @@ var id: String
 var width: int
 var height: int
 
-var tiles: Array
+var ground_tiles: Array
+var furniture_tiles: Array
 var entities: Array
 var items: Array
 var player: _Entity
@@ -18,18 +20,20 @@ var camera: Camera2D
 func init_map(_width:int, _height:int, _player: _Entity, _camera: Camera2D) -> void:
 	width = _width
 	height = _height
-	init_tile_array()
+	ground_tiles = init_tile_array()
+	furniture_tiles = init_tile_array()
 	entities = []
 	items = []
 	player = _player
 	camera = _camera
 	BSPGenerator.generate(self)
-	update_connected_tiles()
+	update_connected_tiles(ground_tiles)
+	update_connected_tiles(furniture_tiles)
 
 	entities.append(player)
 
-func init_tile_array() -> void:
-	tiles = []
+func init_tile_array() -> Array:
+	var tiles = []
 	for i in range(width):
 		tiles.append([])
 
@@ -38,17 +42,27 @@ func init_tile_array() -> void:
 
 			tiles[i].append(map_tile)
 
-func update_connected_tiles() -> void:
+	return tiles
+
+func update_connected_tiles(tiles: Array) -> void:
 	for i in range(width):
 		for j in range(height):
 			var map_tile: MapTile = tiles[i][j]
-			if map_tile.entity.components.has("connected_texture"):
+			if map_tile.entity && map_tile.entity.components.has("connected_texture"):
 				var connected_texture = map_tile.entity.components.get("connected_texture")
-				var texture = connected_texture.get_sprite(self, i, j)
+				var texture = connected_texture.get_sprite(self, tiles, i, j)
+				map_tile.entity.sprite = texture
+
+			if map_tile.entity && map_tile.entity.components.has("tilable"):
+				var tilable = map_tile.entity.components.get("tilable")
+				var texture = tilable.get_sprite(self, i, j)
 				map_tile.entity.sprite = texture
 
 func clear() -> void:
-	for child in map_tiles_node.get_children():
+	for child in ground_tiles_node.get_children():
+		child.queue_free()
+
+	for child in furniture_tiles_node.get_children():
 		child.queue_free()
 
 	for child in entity_tiles_node.get_children():
@@ -66,7 +80,8 @@ func generate() -> void:
 func place_tiles() -> void:
 	for i in range(width):
 		for j in range(height):
-			map_tiles_node.add_child(tiles[i][j])
+			ground_tiles_node.add_child(ground_tiles[i][j])
+			furniture_tiles_node.add_child(furniture_tiles[i][j])
 
 func place_entities() -> void:
 	for entity: _Entity in entities:

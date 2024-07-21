@@ -15,3 +15,6 @@ func parse_json(json: Dictionary = {}) -> void:
 func move(xOffset: int, yOffset: int) -> void:
 	x += xOffset
 	y += yOffset
+
+func is_at(_x: int, _y: int) -> bool:
+	return x == _x && y == _y

@@ -57,9 +57,9 @@ static func generate(_map: Map) -> void:
 					furniture_tile.set_entity(entity)
 
 	for i in 10:
-		var rand = randi_range(0, open_tiles.size())
+		var rand = randi_range(0, open_tiles.size() - 1)
 		var tile: Vector2i = open_tiles.pop_at(rand)
-		map.entities.append(EntityLoader.create("police_officer", {"position": {"x": tile.x, "y": tile.y}}))
+		map.actors.append(EntityLoader.create("police_officer", {"position": {"x": tile.x, "y": tile.y}}))
 
 static func create_beach() -> Rect2i:
 	var beach_size = 3

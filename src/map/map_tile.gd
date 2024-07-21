@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func set_entity(_entity:_Entity) -> void:
 	entity = _entity
+	entity.set_map_tile(self)
 
 func set_tile_position() -> void:
 	if entity && entity.components.has("position"):

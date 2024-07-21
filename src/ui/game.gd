@@ -14,6 +14,9 @@ func new_game() -> void:
 
 	map.init_map(30, 30, player, camera)
 	map.generate()
+	var player_position = player.components.position
+	player.fov.compute(map, player_position.x, player_position.y, 5)
+	player.fov.update_map()
 
 	camera.make_current.call_deferred()
 
@@ -28,10 +31,14 @@ func _physics_process(_delta: float) -> void:
 		if performed_action is UnableToPerformAction:
 			print(performed_action.reason)
 
+		var player_position = player.components.position
+		player.fov.compute(map, player_position.x, player_position.y, 5)
+		player.fov.update_map()
+
 		handle_enemy_turns()
 
 func handle_enemy_turns() -> void:
-	for entity in map.entities:
+	for entity in map.actors:
 		if entity == player:
 			continue
 

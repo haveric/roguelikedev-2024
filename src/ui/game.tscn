@@ -32,5 +32,7 @@ script = ExtResource("3_j41s7")
 
 [node name="ItemTiles" type="Node" parent="Game/Map"]
 
+[node name="ShroudTiles" type="Node" parent="Game/Map"]
+
 [node name="Camera2D" type="Camera2D" parent="Game"]
 zoom = Vector2(0.5, 0.5)

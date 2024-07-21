@@ -1,11 +1,7 @@
-[gd_resource type="Resource" script_class="Tile" load_steps=7 format=3 uid="uid://jjuk5hmb2de5"]
+[gd_resource type="Resource" script_class="Tile" load_steps=5 format=3 uid="uid://jjuk5hmb2de5"]
 
 [ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_1u3k6"]
-[ext_resource type="Script" path="res://src/component/components/randomly_place.gd" id="2_mgc6i"]
 [ext_resource type="Script" path="res://src/entity/tile.gd" id="3_mq2ya"]
-
-[sub_resource type="Resource" id="Resource_bsrrc"]
-script = ExtResource("2_mgc6i")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sw7sf"]
 load_path = "res://.godot/imported/roadTextures_tilesheet.png-6f5e2b46677ebee84fd75fbae0049cd4.ctex"
@@ -19,4 +15,4 @@ script = ExtResource("3_mq2ya")
 id = "water"
 name = "Water"
 sprite = SubResource("AtlasTexture_wno4b")
-default_components = Array[ExtResource("1_1u3k6")]([SubResource("Resource_bsrrc")])
+default_components = Array[ExtResource("1_1u3k6")]([])

@@ -11,6 +11,8 @@ class_name _Entity extends Resource
 var type:String
 var components:Dictionary
 
+var map_tile
+
 func _init(_type: String, json:Dictionary = {}) -> void:
 	type = _type
 
@@ -30,3 +32,6 @@ func load_components(json: Dictionary = {}) -> void:
 		components.get_or_add(clone.id, clone)
 
 	ComponentLoader.load_from_json(self, components, json)
+
+func set_map_tile(tile: MapTile) -> void:
+	map_tile = tile

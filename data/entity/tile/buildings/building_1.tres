@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Tile" load_steps=7 format=3 uid="uid://bfdprysnp55j0"]
+[gd_resource type="Resource" script_class="Tile" load_steps=9 format=3 uid="uid://bfdprysnp55j0"]
 
 [ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_hesjr"]
 [ext_resource type="Script" path="res://src/entity/tile.gd" id="1_ugkyd"]
 [ext_resource type="Script" path="res://src/component/components/blocks_movement.gd" id="2_apu7m"]
 [ext_resource type="Texture2D" uid="uid://oele3d1nsn52" path="res://assets/img/kenney/medieval_tilesheet.png" id="2_okscp"]
+[ext_resource type="Script" path="res://src/component/components/blocks_fov.gd" id="3_k3gy6"]
 
 [sub_resource type="Resource" id="Resource_c37lc"]
 script = ExtResource("2_apu7m")
 blocks_movement = true
+
+[sub_resource type="Resource" id="Resource_cnfci"]
+script = ExtResource("3_k3gy6")
+blocks_fov = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ioa1l"]
 atlas = ExtResource("2_okscp")
@@ -18,4 +23,4 @@ script = ExtResource("1_ugkyd")
 id = "building_1"
 name = "Building"
 sprite = SubResource("AtlasTexture_ioa1l")
-default_components = Array[ExtResource("1_hesjr")]([SubResource("Resource_c37lc")])
+default_components = Array[ExtResource("1_hesjr")]([SubResource("Resource_c37lc"), SubResource("Resource_cnfci")])

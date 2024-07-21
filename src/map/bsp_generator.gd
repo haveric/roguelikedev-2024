@@ -1,9 +1,11 @@
 class_name BSPGenerator extends Node
 
 static var map: Map
+static var open_tiles: Array[Vector2i]
 
 static func generate(_map: Map) -> void:
 	map = _map
+	open_tiles = []
 
 	var grass_rect: Rect2i = create_beach()
 
@@ -28,6 +30,7 @@ static func generate(_map: Map) -> void:
 			if !furniture_tile.entity:
 				var randi = randi_range(0, 100)
 				if randi < 20:
+					open_tiles.append(Vector2i(i, j))
 					var rand_grass = randi_range(0, 100)
 					var grass_type = ""
 					if rand_grass < 15:
@@ -52,6 +55,11 @@ static func generate(_map: Map) -> void:
 
 				if entity != null:
 					furniture_tile.set_entity(entity)
+
+	for i in 10:
+		var rand = randi_range(0, open_tiles.size())
+		var tile: Vector2i = open_tiles.pop_at(rand)
+		map.entities.append(EntityLoader.create("police_officer", {"position": {"x": tile.x, "y": tile.y}}))
 
 static func create_beach() -> Rect2i:
 	var beach_size = 3
@@ -105,6 +113,7 @@ static func bsp_split_horizontal(rect: Rect2i) -> void:
 			var map_tile:MapTile = map.furniture_tiles[i][j]
 			if !map_tile.entity:
 				map_tile.entity = EntityLoader.create("road", {"position": {"x": i, "y": j}})
+				open_tiles.append(Vector2i(i, j))
 
 	var split_size_1 = Vector2i(i - 1, rect.end.y) - rect.position
 	var split_rect_1 = Rect2i(rect.position, split_size_1)
@@ -126,6 +135,7 @@ static func bsp_split_vertical(rect: Rect2i) -> void:
 			var map_tile:MapTile = map.furniture_tiles[i][j]
 			if !map_tile.entity:
 				map_tile.entity = EntityLoader.create("road", {"position": {"x": i, "y": j}})
+				open_tiles.append(Vector2i(i, j))
 
 	var split_size_1 = Vector2i(rect.end.x, j - 1) - rect.position
 	var split_rect_1 = Rect2i(rect.position, split_size_1)

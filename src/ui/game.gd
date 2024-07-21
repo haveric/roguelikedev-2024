@@ -27,3 +27,12 @@ func _physics_process(_delta: float) -> void:
 
 		if performed_action is UnableToPerformAction:
 			print(performed_action.reason)
+
+		handle_enemy_turns()
+
+func handle_enemy_turns() -> void:
+	for entity in map.entities:
+		if entity == player:
+			continue
+
+		print("The " + entity.name + " wonders when it will get to take a real turn.")

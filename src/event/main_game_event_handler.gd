@@ -37,7 +37,7 @@ func get_action(player: _Entity, _delta: float) -> _Action:
 				delta_since_last_move = 0
 				last_movement_action = direction
 
-				return MovementAction.new(player, offset.x, offset.y)
+				return BumpAction.new(player, offset.x, offset.y)
 
 	if Input.is_action_just_pressed("zoom_out"):
 		return ZoomAction.new(player, ZoomAction.ZoomDirection.OUT)

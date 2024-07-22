@@ -75,8 +75,10 @@ func clear() -> void:
 		child.queue_free()
 
 	for child in entity_tiles_node.get_children():
-		if child.entity != player:
-			child.queue_free()
+		if child.entity == player:
+			child.remove_child(camera)
+
+		child.queue_free()
 
 	for child in item_tiles_node.get_children():
 		child.queue_free()

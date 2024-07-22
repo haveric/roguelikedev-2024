@@ -59,7 +59,16 @@ static func generate(_map: Map) -> void:
 	for i in 10:
 		var rand = randi_range(0, open_tiles.size() - 1)
 		var tile: Vector2i = open_tiles.pop_at(rand)
-		map.actors.append(EntityLoader.create("police_officer", {"position": {"x": tile.x, "y": tile.y}}))
+		var actor
+		var rand_actor = randi_range(0, 100)
+		if rand_actor < 50:
+			actor = "construction_worker"
+		elif rand_actor < 80:
+			actor = "police_officer"
+		else:
+			actor = "police_car"
+
+		map.actors.append(EntityLoader.create(actor, {"position": {"x": tile.x, "y": tile.y}}))
 
 static func create_beach() -> Rect2i:
 	var beach_size = 3

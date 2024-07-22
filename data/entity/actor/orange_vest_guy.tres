@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Actor" load_steps=6 format=3 uid="uid://cu2fpdanns132"]
+
+[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_v3g4x"]
+[ext_resource type="Script" path="res://src/component/components/blocks_movement.gd" id="2_7ucfs"]
+[ext_resource type="Script" path="res://src/entity/actor.gd" id="3_2v8w7"]
+[ext_resource type="Texture2D" uid="uid://bvmfeprqaj2t8" path="res://assets/img/rebeccagood/enemies/orange_vest_guy.png" id="4_2fsvv"]
+
+[sub_resource type="Resource" id="Resource_di2pq"]
+script = ExtResource("2_7ucfs")
+blocks_movement = true
+
+[resource]
+script = ExtResource("3_2v8w7")
+id = "construction_worker"
+name = "Construction Worker"
+sprite = ExtResource("4_2fsvv")
+default_components = Array[ExtResource("1_v3g4x")]([SubResource("Resource_di2pq")])

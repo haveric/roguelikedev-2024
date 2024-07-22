@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Actor" load_steps=6 format=3 uid="uid://cvohi5kyqcb6x"]
+
+[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_0ag82"]
+[ext_resource type="Script" path="res://src/component/components/blocks_movement.gd" id="2_aj3nx"]
+[ext_resource type="Script" path="res://src/entity/actor.gd" id="3_kkvqq"]
+[ext_resource type="Texture2D" uid="uid://vkeaaaol3e83" path="res://assets/img/rebeccagood/enemies/police_car.png" id="4_0pav0"]
+
+[sub_resource type="Resource" id="Resource_di2pq"]
+script = ExtResource("2_aj3nx")
+blocks_movement = true
+
+[resource]
+script = ExtResource("3_kkvqq")
+id = "police_car"
+name = "Police Car"
+sprite = ExtResource("4_0pav0")
+default_components = Array[ExtResource("1_0ag82")]([SubResource("Resource_di2pq")])

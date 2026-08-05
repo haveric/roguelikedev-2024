@@ -1,17 +1,30 @@
-[gd_resource type="Resource" script_class="Actor" load_steps=6 format=3 uid="uid://5u84swdwxojs"]
+[gd_resource type="Resource" script_class="Actor" load_steps=10 format=3 uid="uid://5u84swdwxojs"]
 
-[ext_resource type="Script" path="res://src/entity/actor.gd" id="1_5vnpq"]
-[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_v5ohs"]
-[ext_resource type="Script" path="res://src/component/components/blocks_movement.gd" id="2_nrq4c"]
+[ext_resource type="Script" uid="uid://bupeumcm8bud4" path="res://src/entity/actor.gd" id="1_5vnpq"]
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_v5ohs"]
+[ext_resource type="Script" uid="uid://74etmxcsnikd" path="res://src/component/components/blocks_movement.gd" id="2_nrq4c"]
 [ext_resource type="Texture2D" uid="uid://du40homt1hpkv" path="res://assets/img/rebeccagood/player.png" id="2_s6xx2"]
+[ext_resource type="Script" uid="uid://b307wdrekwvn4" path="res://src/component/components/faction.gd" id="3_seoxw"]
+[ext_resource type="Script" uid="uid://cjs7n1ybdtboq" path="res://src/component/components/fighter.gd" id="4_xnslq"]
 
 [sub_resource type="Resource" id="Resource_di2pq"]
 script = ExtResource("2_nrq4c")
 blocks_movement = true
+
+[sub_resource type="Resource" id="Resource_5g3us"]
+script = ExtResource("3_seoxw")
+factions = Array[String](["player"])
+enemies = Array[String](["enemy"])
+
+[sub_resource type="Resource" id="Resource_5c845"]
+script = ExtResource("4_xnslq")
+base_max_hp = 30
+base_defense = 2
+base_power = 5
 
 [resource]
 script = ExtResource("1_5vnpq")
 id = "player"
 name = "Player"
 sprite = ExtResource("2_s6xx2")
-default_components = Array[ExtResource("1_v5ohs")]([SubResource("Resource_di2pq")])
+default_components = Array[ExtResource("1_v5ohs")]([SubResource("Resource_di2pq"), SubResource("Resource_5g3us"), SubResource("Resource_5c845")])

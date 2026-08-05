@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="ResourceGroup" load_steps=2 format=3 uid="uid://bt2nfdyf7511j"]
+[gd_resource type="Resource" script_class="ResourceGroup" format=3 uid="uid://bt2nfdyf7511j"]
 
-[ext_resource type="Script" path="res://addons/godot_resource_groups/resource_group.gd" id="1_ogdcm"]
+[ext_resource type="Script" uid="uid://dcdvg4a3whsf4" path="res://addons/godot_resource_groups/resource_group.gd" id="1_ogdcm"]
 
 [resource]
 script = ExtResource("1_ogdcm")
 base_folder = "res://src/component/components"
 includes = Array[String](["*.gd", "**/*.gd"])
-excludes = Array[String]([])
-paths = Array[String](["res://src/component/components/blocks_fov.gd", "res://src/component/components/blocks_movement.gd", "res://src/component/components/connected_texture.gd", "res://src/component/components/fov.gd", "res://src/component/components/position.gd", "res://src/component/components/randomly_place.gd", "res://src/component/components/tilable.gd"])
+paths = Array[String](["res://src/component/components/blocks_fov.gd", "res://src/component/components/blocks_movement.gd", "res://src/component/components/connected_texture.gd", "res://src/component/components/faction.gd", "res://src/component/components/fighter.gd", "res://src/component/components/fov.gd", "res://src/component/components/position.gd", "res://src/component/components/randomly_place.gd", "res://src/component/components/tilable.gd", "res://src/component/components/ai/_ai.gd", "res://src/component/components/ai/ai_dead.gd", "res://src/component/components/ai/ai_melee_chase.gd"])

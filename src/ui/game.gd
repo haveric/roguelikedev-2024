@@ -42,4 +42,5 @@ func handle_enemy_turns() -> void:
 		if entity == player:
 			continue
 
-		print("The " + entity.name + " wonders when it will get to take a real turn.")
+		if entity.components.has("ai"):
+			entity.components.get("ai").perform(map)

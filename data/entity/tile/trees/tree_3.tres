@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Tile" load_steps=7 format=3 uid="uid://cewdfbjiy401u"]
 
-[ext_resource type="Script" path="res://src/entity/tile.gd" id="1_25dh5"]
-[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_l6dqn"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="1_25dh5"]
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_l6dqn"]
 [ext_resource type="Texture2D" uid="uid://oele3d1nsn52" path="res://assets/img/kenney/medieval_tilesheet.png" id="2_i0sjt"]
-[ext_resource type="Script" path="res://src/component/components/blocks_movement.gd" id="2_w4t8f"]
+[ext_resource type="Script" uid="uid://74etmxcsnikd" path="res://src/component/components/blocks_movement.gd" id="2_w4t8f"]
 
 [sub_resource type="Resource" id="Resource_qb4jr"]
 script = ExtResource("2_w4t8f")

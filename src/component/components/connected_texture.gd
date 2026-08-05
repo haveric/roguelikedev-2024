@@ -4,7 +4,7 @@ class_name ConnectedTexture extends _ExportableComponent
 @export var tile_size = 128
 
 func _init(json: Dictionary = {}) -> void:
-	super("connected_texture", json)
+	super(json, "connected_texture")
 
 func parse_json(json: Dictionary = {}) -> void:
 	if json.has("orthogonal_texture"):

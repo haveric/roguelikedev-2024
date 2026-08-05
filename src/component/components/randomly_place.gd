@@ -6,7 +6,7 @@ var x_offset: int
 var y_offset: int
 
 func _init(json: Dictionary = {}) -> void:
-	super("randomly_place", json)
+	super(json, "randomly_place")
 
 func parse_json(json: Dictionary = {}) -> void:
 	if json.has("randomly_place"):

@@ -8,7 +8,7 @@ var x_offset: int
 var y_offset: int
 
 func _init(json: Dictionary = {}) -> void:
-	super("tilable", json)
+	super(json, "tilable")
 
 func parse_json(json: Dictionary = {}) -> void:
 	if json.has("tilable"):

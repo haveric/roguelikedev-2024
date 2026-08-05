@@ -1,17 +1,34 @@
-[gd_resource type="Resource" script_class="Actor" load_steps=6 format=3 uid="uid://boibggxo75ixo"]
+[gd_resource type="Resource" script_class="Actor" load_steps=12 format=3 uid="uid://boibggxo75ixo"]
 
-[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_uruum"]
-[ext_resource type="Script" path="res://src/component/components/blocks_movement.gd" id="2_7ni7m"]
-[ext_resource type="Script" path="res://src/entity/actor.gd" id="3_6ddyc"]
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_uruum"]
+[ext_resource type="Script" uid="uid://74etmxcsnikd" path="res://src/component/components/blocks_movement.gd" id="2_7ni7m"]
+[ext_resource type="Script" uid="uid://bupeumcm8bud4" path="res://src/entity/actor.gd" id="3_6ddyc"]
+[ext_resource type="Script" uid="uid://b307wdrekwvn4" path="res://src/component/components/faction.gd" id="3_42for"]
+[ext_resource type="Script" uid="uid://cjs7n1ybdtboq" path="res://src/component/components/fighter.gd" id="4_r8wry"]
 [ext_resource type="Texture2D" uid="uid://bmbwagd1uj8f3" path="res://assets/img/rebeccagood/enemies/police_man.png" id="4_xvlnh"]
+[ext_resource type="Script" uid="uid://b70e6t3bwojpg" path="res://src/component/components/ai/ai_melee_chase.gd" id="5_1jrlb"]
 
 [sub_resource type="Resource" id="Resource_di2pq"]
 script = ExtResource("2_7ni7m")
 blocks_movement = true
+
+[sub_resource type="Resource" id="Resource_j7xgu"]
+script = ExtResource("3_42for")
+factions = Array[String](["enemy"])
+enemies = Array[String](["player"])
+
+[sub_resource type="Resource" id="Resource_bq1f0"]
+script = ExtResource("4_r8wry")
+base_max_hp = 16
+base_defense = 1
+base_power = 4
+
+[sub_resource type="Resource" id="Resource_hxa1q"]
+script = ExtResource("5_1jrlb")
 
 [resource]
 script = ExtResource("3_6ddyc")
 id = "police_officer"
 name = "Police Officer"
 sprite = ExtResource("4_xvlnh")
-default_components = Array[ExtResource("1_uruum")]([SubResource("Resource_di2pq")])
+default_components = Array[ExtResource("1_uruum")]([SubResource("Resource_di2pq"), SubResource("Resource_j7xgu"), SubResource("Resource_bq1f0"), SubResource("Resource_hxa1q")])

@@ -4,7 +4,7 @@ var explored:bool = false
 var visible:bool = false
 
 func _init(json: Dictionary = {}) -> void:
-	super("fov", json)
+	super(json, "fov")
 
 func parse_json(json: Dictionary = {}) -> void:
 	if json.has("explored"):

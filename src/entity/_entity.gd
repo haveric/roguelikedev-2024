@@ -20,7 +20,6 @@ func _init(_type: String, json:Dictionary = {}) -> void:
 
 func clone(json) -> _Entity:
 	var entity: _Entity = self.duplicate()
-
 	entity.load_components(json)
 
 	return entity
@@ -29,7 +28,8 @@ func load_components(json: Dictionary = {}) -> void:
 	for component in default_components:
 		var clone = component.duplicate()
 		clone.set_parent_entity(self)
-		components.get_or_add(clone.id, clone)
+
+		components.get_or_add(clone.base_type, clone)
 
 	ComponentLoader.load_from_json(self, components, json)
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1h7yhqilduwh"]
 
-[ext_resource type="Script" path="res://src/ui/game_root.gd" id="1_bmher"]
-[ext_resource type="Script" path="res://src/ui/game.gd" id="1_u45wv"]
-[ext_resource type="Script" path="res://src/event/input_handler.gd" id="3_8jyjy"]
-[ext_resource type="Script" path="res://src/map/map.gd" id="3_j41s7"]
+[ext_resource type="Script" uid="uid://dyfnp8bchj0go" path="res://src/ui/game_root.gd" id="1_bmher"]
+[ext_resource type="Script" uid="uid://b5pvocgttewlx" path="res://src/ui/game.gd" id="1_u45wv"]
+[ext_resource type="Script" uid="uid://bur4nb223mb7c" path="res://src/event/input_handler.gd" id="3_8jyjy"]
+[ext_resource type="Script" uid="uid://d3olg4st4i2pv" path="res://src/map/map.gd" id="3_j41s7"]
 
 [node name="GameRoot" type="Control"]
 layout_mode = 3

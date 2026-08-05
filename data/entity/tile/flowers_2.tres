@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Tile" load_steps=6 format=3 uid="uid://db3bk5yrvpetv"]
 
-[ext_resource type="Script" path="res://src/component/_exportable_component.gd" id="1_xlxec"]
-[ext_resource type="Script" path="res://src/component/components/randomly_place.gd" id="2_crndn"]
-[ext_resource type="Script" path="res://src/entity/tile.gd" id="3_idj6q"]
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_xlxec"]
+[ext_resource type="Script" uid="uid://dcbbocthlffni" path="res://src/component/components/randomly_place.gd" id="2_crndn"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="3_idj6q"]
 [ext_resource type="Texture2D" uid="uid://btig5msb05df6" path="res://assets/img/rebeccagood/grass/flower_purple.png" id="4_c2nky"]
 
 [sub_resource type="Resource" id="Resource_bsrrc"]

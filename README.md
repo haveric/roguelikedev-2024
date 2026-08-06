@@ -1,6 +1,11 @@
 # Neil the Seal
 
-Roguelike project created during reddit.com/r/roguelikedev's 2024 event.
+Roguelike project created during reddit.com/r/roguelikedev's 2024 event: <a href="https://www.reddit.com/r/roguelikedev/wiki/python_tutorial_series#wiki_version_2024">RoguelikeDev Does The Complete Roguelike Tutorial</a>
+
+## Demos
+- <a href="https://www.ryanbreuer.com/roguelikedev-2024/week1/roguelikedev-2024.html">Week 1</a> - Drawing a character and moving around
+- <a href="https://www.ryanbreuer.com/roguelikedev-2024/week2/roguelikedev-2024.html">Week 2</a> - Town generation
+- <a href="https://www.ryanbreuer.com/roguelikedev-2024/week3/roguelikedev-2024.html">Week 3</a> - Enemy placement and player field of view
 
 ## License
 See the individual LICENSE files for license rights and limitations.

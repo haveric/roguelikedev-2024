@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Tile" load_steps=9 format=3 uid="uid://b0mlywi27llyr"]
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://b0mlywi27llyr"]
 
 [ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="1_1gnto"]
 [ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_u57vk"]
@@ -8,11 +8,9 @@
 
 [sub_resource type="Resource" id="Resource_oto4o"]
 script = ExtResource("2_1sbtc")
-blocks_movement = true
 
 [sub_resource type="Resource" id="Resource_w52cw"]
 script = ExtResource("3_s4j28")
-blocks_fov = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rodlc"]
 atlas = ExtResource("2_0mugo")

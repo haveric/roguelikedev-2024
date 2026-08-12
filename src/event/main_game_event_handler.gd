@@ -45,6 +45,8 @@ func get_action(player: _Entity, _delta: float) -> _Action:
 		return ZoomAction.new(player, ZoomAction.ZoomDirection.IN)
 
 	if Input.is_action_just_pressed("debug_gen"):
-		return DebugAction1.new(player)
+		return DebugRegenMapAction.new(player)
+	if Input.is_action_just_pressed("debug_clearmap"):
+		return DebugClearMapAction.new(player)
 
 	return null

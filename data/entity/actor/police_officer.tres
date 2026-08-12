@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Actor" load_steps=12 format=3 uid="uid://boibggxo75ixo"]
+[gd_resource type="Resource" script_class="Actor" format=3 uid="uid://boibggxo75ixo"]
 
 [ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_uruum"]
 [ext_resource type="Script" uid="uid://74etmxcsnikd" path="res://src/component/components/blocks_movement.gd" id="2_7ni7m"]
@@ -10,7 +10,6 @@
 
 [sub_resource type="Resource" id="Resource_di2pq"]
 script = ExtResource("2_7ni7m")
-blocks_movement = true
 
 [sub_resource type="Resource" id="Resource_j7xgu"]
 script = ExtResource("3_42for")

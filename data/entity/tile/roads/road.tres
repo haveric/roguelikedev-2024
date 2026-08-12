@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Tile" load_steps=7 format=3 uid="uid://cmwv0kxgjwpoo"]
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://cmwv0kxgjwpoo"]
 
 [ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_us36i"]
 [ext_resource type="Texture2D" uid="uid://c6xiftwsji8f5" path="res://assets/img/rebeccagood/road.png" id="2_8ck51"]
@@ -11,7 +11,6 @@ atlas = ExtResource("2_8ck51")
 [sub_resource type="Resource" id="Resource_lmt55"]
 script = ExtResource("3_chfrq")
 orthogonal_texture = SubResource("AtlasTexture_vxhsp")
-tile_size = 128
 
 [resource]
 script = ExtResource("2_o68v2")

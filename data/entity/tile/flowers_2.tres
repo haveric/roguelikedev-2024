@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Tile" load_steps=6 format=3 uid="uid://db3bk5yrvpetv"]
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://db3bk5yrvpetv"]
 
 [ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_xlxec"]
 [ext_resource type="Script" uid="uid://dcbbocthlffni" path="res://src/component/components/randomly_place.gd" id="2_crndn"]

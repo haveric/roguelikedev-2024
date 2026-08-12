@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Tile" load_steps=4 format=3 uid="uid://bgjpcqrxf2cd"]
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://bgjpcqrxf2cd"]
 
 [ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_q1sjr"]
 [ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="3_xk21y"]
@@ -9,4 +9,3 @@ script = ExtResource("3_xk21y")
 id = "shroud"
 name = "Shroud"
 sprite = ExtResource("4_s02h1")
-default_components = Array[ExtResource("1_q1sjr")]([])

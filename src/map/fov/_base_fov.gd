@@ -53,6 +53,11 @@ func add_visible_shroud(tile) -> void:
 	if !visible_shroud.has(tile):
 		visible_shroud.append(tile)
 
+func reveal_map(map) -> void:
+	for i in range(0, map.width):
+		for j in range(0, map.height):
+			explore_tile(map, i, j)
+		
 func explore_tile(map, x, y) -> void:
 	if map.is_in_bounds(x, y):
 		add_visible_shroud(map.shroud_tiles[x][y])

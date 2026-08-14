@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://bvokvnyykgxa0"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_deih4"]
+[ext_resource type="Script" uid="uid://74etmxcsnikd" path="res://src/component/components/blocks_movement.gd" id="2_u2qpf"]
+[ext_resource type="Script" uid="uid://dg2qfa7ixw70r" path="res://src/component/components/blocks_fov.gd" id="3_77jfn"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="4_ssrit"]
+[ext_resource type="Texture2D" uid="uid://d3okd4885jg3p" path="res://assets/img/rebeccagood/buildings/house_2.png" id="5_deih4"]
+
+[sub_resource type="Resource" id="Resource_c37lc"]
+script = ExtResource("2_u2qpf")
+
+[sub_resource type="Resource" id="Resource_cnfci"]
+script = ExtResource("3_77jfn")
+
+[resource]
+script = ExtResource("4_ssrit")
+id = "house_2"
+name = "House"
+sprite = ExtResource("5_deih4")
+default_components = Array[ExtResource("1_deih4")]([SubResource("Resource_c37lc"), SubResource("Resource_cnfci")])

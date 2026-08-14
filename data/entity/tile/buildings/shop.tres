@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://dpxew74766in2"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_dfngv"]
+[ext_resource type="Script" uid="uid://74etmxcsnikd" path="res://src/component/components/blocks_movement.gd" id="2_rsqbx"]
+[ext_resource type="Script" uid="uid://dg2qfa7ixw70r" path="res://src/component/components/blocks_fov.gd" id="3_2t0t1"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="4_a5iqs"]
+[ext_resource type="Texture2D" uid="uid://12m8lcx22qom" path="res://assets/img/rebeccagood/buildings/store.png" id="5_dfngv"]
+
+[sub_resource type="Resource" id="Resource_c37lc"]
+script = ExtResource("2_rsqbx")
+
+[sub_resource type="Resource" id="Resource_cnfci"]
+script = ExtResource("3_2t0t1")
+
+[resource]
+script = ExtResource("4_a5iqs")
+id = "shop"
+name = "Shop"
+sprite = ExtResource("5_dfngv")
+default_components = Array[ExtResource("1_dfngv")]([SubResource("Resource_c37lc"), SubResource("Resource_cnfci")])

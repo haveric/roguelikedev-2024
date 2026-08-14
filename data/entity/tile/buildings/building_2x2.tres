@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://cemvn78bri881"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_pcypj"]
+[ext_resource type="Script" uid="uid://74etmxcsnikd" path="res://src/component/components/blocks_movement.gd" id="2_cm0hv"]
+[ext_resource type="Script" uid="uid://dg2qfa7ixw70r" path="res://src/component/components/blocks_fov.gd" id="3_wguh1"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="4_48ucy"]
+[ext_resource type="Texture2D" uid="uid://dp676krs1xcc" path="res://assets/img/temp/building_2x2.png" id="5_pcypj"]
+
+[sub_resource type="Resource" id="Resource_oto4o"]
+script = ExtResource("2_cm0hv")
+
+[sub_resource type="Resource" id="Resource_w52cw"]
+script = ExtResource("3_wguh1")
+
+[resource]
+script = ExtResource("4_48ucy")
+id = "building_2x2"
+name = "Building 2x2"
+sprite = ExtResource("5_pcypj")
+default_components = Array[ExtResource("1_pcypj")]([SubResource("Resource_oto4o"), SubResource("Resource_w52cw")])

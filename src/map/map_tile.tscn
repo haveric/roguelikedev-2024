@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceihoq7xmfcy2"]
+[gd_scene format=3 uid="uid://ceihoq7xmfcy2"]
 
 [ext_resource type="Script" uid="uid://bs56epol0usow" path="res://src/map/map_tile.gd" id="1_47ds3"]
 
-[node name="MapTile" type="Node2D"]
+[node name="MapTile" type="Node2D" unique_id=1208521951]
 script = ExtResource("1_47ds3")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=406557662]
 centered = false

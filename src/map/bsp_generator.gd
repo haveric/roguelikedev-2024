@@ -21,40 +21,56 @@ static func generate(_map: Map) -> void:
 			if !map_tile.entity:
 				map_tile.entity = EntityLoader.create("grass_empty", {"position": {"x": i, "y": j}})
 
+	var potential_buildings = []
+	var potential_buildings_map = init_2d_array(map.width, map.height, 1)
+	for i in range(grass_rect.position.x, grass_rect.end.x):
+		for j in range(grass_rect.position.y, grass_rect.end.y):
+			potential_buildings_map[i][j] = 0
+
+	for i in range(grass_rect.position.x, grass_rect.end.x):
+		for j in range(grass_rect.position.y, grass_rect.end.y):
+			walk_tiles(potential_buildings, potential_buildings_map, i, j)
+	
+	add_buildings(potential_buildings)
+
 	var entity
 	for i in range(grass_rect.position.x, grass_rect.end.x):
 		for j in range(grass_rect.position.y, grass_rect.end.y):
 			entity = null
-
+			
 			var furniture_tile:MapTile = map.furniture_tiles[i][j]
-			if !furniture_tile.entity:
-				var randi = randi_range(0, 100)
-				if randi < 20:
-					open_tiles.append(Vector2i(i, j))
-					var rand_grass = randi_range(0, 100)
-					var grass_type = ""
-					if rand_grass < 15:
-						grass_type = "grass_1"
-					elif rand_grass < 30:
-						grass_type = "grass_2"
-					elif rand_grass < 45:
-						grass_type = "flowers_1"
-					elif rand_grass < 60:
-						grass_type = "flowers_2"
-					else:
-						grass_type = ""
-
-					if grass_type != "":
-						entity = EntityLoader.create(grass_type, {"position": {"x": i, "y": j}})
+			if furniture_tile.entity:
+				continue
+				
+			var randi = randi_range(0, 100)
+			if randi < 20:
+				open_tiles.append(Vector2i(i, j))
+				var rand_grass = randi_range(0, 100)
+				var grass_type = ""
+				if rand_grass < 15:
+					grass_type = "grass_1"
+				elif rand_grass < 30:
+					grass_type = "grass_2"
+				elif rand_grass < 45:
+					grass_type = "flowers_1"
+				elif rand_grass < 60:
+					grass_type = "flowers_2"
 				else:
-					var randj = randi_range(0, 100)
-					if randj < 40:
-						entity = EntityLoader.create("building_1", {"position": {"x": i, "y": j}})
-					else:
-						entity = EntityLoader.create("building_2", {"position": {"x": i, "y": j}})
+					grass_type = ""
 
-				if entity != null:
-					furniture_tile.set_entity(entity)
+				if grass_type != "":
+					entity = EntityLoader.create(grass_type, {"position": {"x": i, "y": j}})
+			else:
+				var randj = randi_range(0, 100)
+				if randj < 47:
+					entity = EntityLoader.create("house_1", {"position": {"x": i, "y": j}})
+				elif randj < 94:
+					entity = EntityLoader.create("house_2", {"position": {"x": i, "y": j}})
+				else:
+					entity = EntityLoader.create("shop", {"position": {"x": i, "y": j}})
+
+			if entity != null:
+				furniture_tile.set_entity(entity)
 
 	for i in 10:
 		var rand = randi_range(0, open_tiles.size() - 1)
@@ -70,6 +86,136 @@ static func generate(_map: Map) -> void:
 
 		map.actors.append(EntityLoader.create(actor, {"position": {"x": tile.x, "y": tile.y}}))
 
+static func add_buildings(potential_buildings):
+	var num_5x3 = 2
+	var num_3x5 = 2
+	var num_3x3 = 3
+	var num_3x2 = 4
+	var num_2x2 = 10
+
+	add_large_building(potential_buildings, num_5x3, 5, 3, "building_5x3")
+	add_large_building(potential_buildings, num_3x5, 3, 5, "building_3x5")
+	add_large_building(potential_buildings, num_3x3, 3, 3, "building_3x3")
+	add_large_building(potential_buildings, num_3x2, 3, 2, "building_3x2")
+	add_large_building(potential_buildings, num_2x2, 2, 2, "building_2x2")
+
+	
+static func add_large_building(potential_buildings, num, w, h, entity):
+	for i in num:
+		potential_buildings.shuffle()
+		var index = 0
+		for building in potential_buildings:
+			if (building.width >= w && building.height >= h):
+				var x = randi_range(building.x, building.x + building.width - w)
+				var y = randi_range(building.y, building.y + building.height - h)
+				var building_entity = EntityLoader.create(entity, {"position": {"x": x, "y": y}})
+				map.furniture_tiles[x][y].entity = building_entity
+				for entity_x in range(x, x + w):
+					for entity_y in range(y, y + h):
+						if entity_x == x && entity_y == y:
+							continue
+						
+						var fake_entity = EntityLoader.create(entity, {"position": {"x": entity_x, "y": entity_y}})
+						fake_entity.sprite = null
+						map.furniture_tiles[entity_x][entity_y].entity = fake_entity
+				
+				potential_buildings.remove_at(index)
+				if (x > building.x):
+					var new_building_left = {
+						"x": building.x,
+						"y": building.y,
+						"width": x - building.x,
+						"height": building.height
+					}
+					potential_buildings.append(new_building_left)
+				if (x + w < building.x + building.width):
+					var new_building_right = {
+						"x": x + w,
+						"y": building.y,
+						"width": building.x + building.width - w - x,
+						"height": building.height
+					}
+					potential_buildings.append(new_building_right)
+					
+				if (y > building.y):
+					var new_building_top = {
+						"x": x,
+						"y": building.y,
+						"width": w,
+						"height": y - building.y
+					}
+					potential_buildings.append(new_building_top)
+					
+				if (y + h < building.y + building.height):
+					var new_building_bottom = {
+						"x": x,
+						"y": y + h,
+						"width": w,
+						"height": building.y + building.height - h - y
+					}
+					potential_buildings.append(new_building_bottom)
+				break
+			index += 1
+
+static func walk_tiles(potential_buildings, potential_buildings_map, i, j):
+	if (potential_buildings_map[i][j] == 0):
+		if map.furniture_tiles[i][j].entity:
+			potential_buildings_map[i][j] = 1;
+			return
+		else:
+			var new_building = {
+				"x": i,
+				"y": j,
+				"width": 1,
+				"height": 1
+			}
+			
+			var temp_i = i;
+			var temp_j = j
+			
+			while(true):
+				temp_i += 1
+				if temp_i >= potential_buildings_map.size() - 1:
+					break
+				
+				if (potential_buildings_map[temp_i][temp_j] == 0):
+					if map.furniture_tiles[temp_i][temp_j].entity:
+						break
+					else:
+						new_building.width += 1
+				
+			temp_i = i
+			while(true):
+				temp_j += 1
+				
+				if temp_j >= potential_buildings_map[temp_i].size() - 1:
+					break
+
+				if (potential_buildings_map[temp_i][temp_j] == 0):
+					if map.furniture_tiles[temp_i][temp_j].entity:
+						break
+					else:
+						new_building.height += 1
+				
+			for x in range(i, i + new_building.width):
+				for y in range(j, j + new_building.height):
+					potential_buildings_map[x][y] = 1;
+			potential_buildings.append(new_building)
+
+static func init_2d_array(width, height, value) -> Array:
+	var array = []
+	array.resize(width)
+	
+	for i in range(width):
+		array[i] = []
+		array[i].resize(height)
+		
+		if (value != null):
+			for j in range(height):
+				array[i][j] = value	
+
+	return array
+	
 static func create_beach() -> Rect2i:
 	var beach_size = 3
 	var water_size = 3

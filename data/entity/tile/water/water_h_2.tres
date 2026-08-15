@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://xsebswbp7in6"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_ld11e"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="2_84a71"]
+[ext_resource type="Texture2D" uid="uid://bpgvvc5u6yj6m" path="res://assets/img/rebeccagood/water.png" id="3_whbms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p08qb"]
+atlas = ExtResource("3_whbms")
+region = Rect2(128, 128, 128, 128)
+filter_clip = true
+
+[resource]
+script = ExtResource("2_84a71")
+id = "water_h_2"
+name = "Water"
+sprite = SubResource("AtlasTexture_p08qb")

@@ -251,10 +251,18 @@ static func create_beach() -> Rect2i:
 			var map_tile:MapTile = map.ground_tiles[i][j]
 			map_tile.entity = EntityLoader.create("beach", {"position": {"x": i, "y": j}})
 
+	var water_tile_strings
+	if rand_beach_dir == 0 || rand_beach_dir == 1:
+		water_tile_strings = ["water_empty", "water_v_1", "water_v_2"]
+	else:
+		water_tile_strings = ["water_empty", "water_h_1", "water_h_2"]
+				
 	for i in range(rect_water.position.x, rect_water.position.x + rect_water.size.x):
 		for j in range(rect_water.position.y, rect_water.position.y + rect_water.size.y):
 			var map_tile:MapTile = map.ground_tiles[i][j]
-			map_tile.entity = EntityLoader.create("water", {"position": {"x": i, "y": j}})
+
+			var water_tile = water_tile_strings.pick_random()
+			map_tile.entity = EntityLoader.create(water_tile, {"position": {"x": i, "y": j}})
 
 	return rect_grass
 

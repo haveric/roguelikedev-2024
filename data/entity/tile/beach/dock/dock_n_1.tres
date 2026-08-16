@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://dqh07vfwr7l5p"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_8orff"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="2_sre2q"]
+[ext_resource type="Texture2D" uid="uid://cgnh1gwewr3w7" path="res://assets/img/rebeccagood/beach/dock.png" id="3_glhc3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p08qb"]
+atlas = ExtResource("3_glhc3")
+region = Rect2(256, 128, 128, 128)
+filter_clip = true
+
+[resource]
+script = ExtResource("2_sre2q")
+id = "dock_n_1"
+name = "Dock"
+sprite = SubResource("AtlasTexture_p08qb")

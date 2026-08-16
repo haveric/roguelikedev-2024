@@ -19,7 +19,7 @@ static func generate(_map: Map) -> void:
 		for j in range(grass_rect.position.y, grass_rect.end.y):
 			var map_tile:MapTile = map.ground_tiles[i][j]
 			if !map_tile.entity:
-				map_tile.entity = EntityLoader.create("grass_empty", {"position": {"x": i, "y": j}})
+				map_tile.set_entity(EntityLoader.create("grass_empty", {"position": {"x": i, "y": j}}))
 
 	var potential_buildings = []
 	var potential_buildings_map = init_2d_array(map.width, map.height, 1)
@@ -109,7 +109,7 @@ static func add_large_building(potential_buildings, num, w, h, entity):
 				var x = randi_range(building.x, building.x + building.width - w)
 				var y = randi_range(building.y, building.y + building.height - h)
 				var building_entity = EntityLoader.create(entity, {"position": {"x": x, "y": y}})
-				map.furniture_tiles[x][y].entity = building_entity
+				map.furniture_tiles[x][y].set_entity(building_entity)
 				for entity_x in range(x, x + w):
 					for entity_y in range(y, y + h):
 						if entity_x == x && entity_y == y:
@@ -117,7 +117,7 @@ static func add_large_building(potential_buildings, num, w, h, entity):
 						
 						var fake_entity = EntityLoader.create(entity, {"position": {"x": entity_x, "y": entity_y}})
 						fake_entity.sprite = null
-						map.furniture_tiles[entity_x][entity_y].entity = fake_entity
+						map.furniture_tiles[entity_x][entity_y].set_entity(fake_entity)
 				
 				potential_buildings.remove_at(index)
 				if (x > building.x):
@@ -221,6 +221,7 @@ static func create_beach() -> Rect2i:
 	var water_size = 5
 	var shore_size = beach_size + water_size
 	var rect_beach: Rect2i
+	var rect_beach_no_edge: Rect2i
 	var rect_water: Rect2i
 	var rect_grass: Rect2i
 
@@ -228,25 +229,27 @@ static func create_beach() -> Rect2i:
 	if rand_beach_dir == 0: # Left
 		rect_water = Rect2i(0, 0, water_size, map.height)
 		rect_beach = Rect2i(water_size, 0, beach_size, map.height)
+		rect_beach_no_edge = Rect2i(water_size + 1, 0, beach_size - 1, map.height)
 		rect_grass = Rect2i(shore_size, 0, map.width - shore_size, map.height)
 	elif rand_beach_dir == 1: # Right
 		rect_water = Rect2i(map.width - water_size, 0, water_size, map.height)
 		rect_beach = Rect2i(map.width - shore_size, 0, beach_size, map.height)
+		rect_beach_no_edge = Rect2i(map.width - shore_size, 0, beach_size - 1, map.height)
 		rect_grass = Rect2i(0, 0, map.width - shore_size, map.height)
 	elif rand_beach_dir == 2: # Top
 		rect_water = Rect2i(0, 0, map.width, water_size)
 		rect_beach = Rect2i(0, water_size, map.width, beach_size)
+		rect_beach_no_edge = Rect2i(0, water_size + 1, map.width, beach_size - 1)
 		rect_grass = Rect2i(0, shore_size, map.width, map.height - shore_size)
 	else: # Bottom
 		rect_water = Rect2i(0, map.height - water_size, map.width, water_size)
 		rect_beach = Rect2i(0, map.height - shore_size, map.width, beach_size)
+		rect_beach_no_edge = Rect2i(0, map.height - shore_size, map.width, beach_size - 1)
 		rect_grass = Rect2i(0, 0, map.width, map.height - shore_size)
 
 	var player_position = map.player.components.position
 	player_position.x = randi_range(rect_water.position.x, rect_water.position.x + rect_water.size.x - 1)
 	player_position.y = randi_range(rect_water.position.y, rect_water.position.y + rect_water.size.y - 1)
-
-
 	
 	for i in range(rect_beach.position.x, rect_beach.position.x + rect_beach.size.x):
 		for j in range(rect_beach.position.y, rect_beach.position.y + rect_beach.size.y):
@@ -266,8 +269,23 @@ static func create_beach() -> Rect2i:
 				if j == rect_beach.position.y + rect_beach.size.y - 1:
 					beach_tile_string = "beach_s"
 				
-			map_tile.entity = EntityLoader.create(beach_tile_string, {"position": {"x": i, "y": j}})
+			map_tile.set_entity(EntityLoader.create(beach_tile_string, {"position": {"x": i, "y": j}}))
 
+	var num_beach_items = 10
+	for i in num_beach_items:
+		var rand_item = randi_range(0, 100)
+		var beach_item_string
+		if rand_item < 50:
+			beach_item_string = "beach_ball"
+		else:
+			beach_item_string = "umbrella"
+			
+		var x = randi_range(rect_beach_no_edge.position.x, rect_beach_no_edge.position.x + rect_beach_no_edge.size.x - 1)
+		var y = randi_range(rect_beach_no_edge.position.y, rect_beach_no_edge.position.y + rect_beach_no_edge.size.y - 1)
+		map.furniture_tiles[x][y].set_entity(EntityLoader.create(beach_item_string, {"position": {"x": x, "y": y}}))
+
+		
+	
 	var water_tile_strings
 	if rand_beach_dir == 0 || rand_beach_dir == 1:
 		water_tile_strings = ["water_empty", "water_v_1", "water_v_2"]
@@ -279,7 +297,35 @@ static func create_beach() -> Rect2i:
 			var map_tile:MapTile = map.ground_tiles[i][j]
 
 			var water_tile = water_tile_strings.pick_random()
-			map_tile.entity = EntityLoader.create(water_tile, {"position": {"x": i, "y": j}})
+			map_tile.set_entity(EntityLoader.create(water_tile, {"position": {"x": i, "y": j}}))
+
+	var num_dock = 1
+	var rand_dock = randi_range(1, 100)
+	if rand_dock < 20:
+		num_dock = 2
+
+	for i in num_dock:
+		if rand_beach_dir == 0: # Left
+			var x = rect_beach.position.x
+			var y = randi_range(rect_beach.position.y, rect_beach.position.y + rect_beach.size.y - 1)
+			map.ground_tiles[x][y].set_entity(EntityLoader.create("dock_w_1", {"position": {"x": x, "y": y}}))
+			map.ground_tiles[x-1][y].set_entity(EntityLoader.create("dock_w_2", {"position": {"x": x-1, "y": y}}))
+		elif rand_beach_dir == 1: # Right
+			var x = rect_beach.position.x + rect_beach.size.x - 1
+			var y = randi_range(rect_beach.position.y, rect_beach.position.y + rect_beach.size.y - 1)
+			map.ground_tiles[x][y].set_entity(EntityLoader.create("dock_e_1", {"position": {"x": x, "y": y}}))
+			map.ground_tiles[x+1][y].set_entity(EntityLoader.create("dock_e_2", {"position": {"x": x+1, "y": y}}))
+		elif rand_beach_dir == 2: # Top
+			var x = randi_range(rect_beach.position.x, rect_beach.position.x + rect_beach.size.x - 1)
+			var y = rect_beach.position.y
+			map.ground_tiles[x][y].set_entity(EntityLoader.create("dock_n_1", {"position": {"x": x, "y": y}}))
+			map.ground_tiles[x][y-1].set_entity(EntityLoader.create("dock_n_2", {"position": {"x": x, "y": y-1}}))
+		else: # Bottom
+			var x = randi_range(rect_beach.position.x, rect_beach.position.x + rect_beach.size.x - 1)
+			var y = rect_beach.position.y + rect_beach.size.y - 1
+			map.ground_tiles[x][y].set_entity(EntityLoader.create("dock_s_1", {"position": {"x": x, "y": y}}))
+			map.ground_tiles[x][y+1].set_entity(EntityLoader.create("dock_s_2", {"position": {"x": x, "y": y+1}}))
+		
 
 	return rect_grass
 
@@ -292,7 +338,7 @@ static func bsp_split_horizontal(rect: Rect2i) -> void:
 		if map.is_in_bounds(i, j):
 			var map_tile:MapTile = map.furniture_tiles[i][j]
 			if !map_tile.entity:
-				map_tile.entity = EntityLoader.create("road", {"position": {"x": i, "y": j}})
+				map_tile.set_entity(EntityLoader.create("road", {"position": {"x": i, "y": j}}))
 				open_tiles.append(Vector2i(i, j))
 
 	var split_size_1 = Vector2i(i - 1, rect.end.y) - rect.position
@@ -314,7 +360,7 @@ static func bsp_split_vertical(rect: Rect2i) -> void:
 		if map.is_in_bounds(i, j):
 			var map_tile:MapTile = map.furniture_tiles[i][j]
 			if !map_tile.entity:
-				map_tile.entity = EntityLoader.create("road", {"position": {"x": i, "y": j}})
+				map_tile.set_entity(EntityLoader.create("road", {"position": {"x": i, "y": j}}))
 				open_tiles.append(Vector2i(i, j))
 
 	var split_size_1 = Vector2i(rect.end.x, j - 1) - rect.position

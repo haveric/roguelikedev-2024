@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://pqbrcdingeqe"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_3hvtv"]
+[ext_resource type="Script" uid="uid://dcbbocthlffni" path="res://src/component/components/randomly_place.gd" id="2_har3n"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="3_fbubp"]
+[ext_resource type="Texture2D" uid="uid://dsxywgyucca6m" path="res://assets/img/rebeccagood/beach/umbrella.png" id="4_05d2g"]
+
+[sub_resource type="Resource" id="Resource_bsrrc"]
+script = ExtResource("2_har3n")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll3r7"]
+atlas = ExtResource("4_05d2g")
+region = Rect2(54, 0, 54, 54)
+
+[resource]
+script = ExtResource("3_fbubp")
+id = "umbrella_broken"
+name = "Umbrella"
+sprite = SubResource("AtlasTexture_ll3r7")
+default_components = Array[ExtResource("1_3hvtv")]([SubResource("Resource_bsrrc")])

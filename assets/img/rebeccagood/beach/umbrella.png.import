@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csefchn5pnwb8"
-path="res://.godot/imported/beach.png-3794ac43889c9a4a99afd04a015c4c63.ctex"
+uid="uid://dsxywgyucca6m"
+path="res://.godot/imported/umbrella.png-52f571700911267c6d2ee48161109aa3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/img/rebeccagood/beach.png"
-dest_files=["res://.godot/imported/beach.png-3794ac43889c9a4a99afd04a015c4c63.ctex"]
+source_file="res://assets/img/rebeccagood/beach/umbrella.png"
+dest_files=["res://.godot/imported/umbrella.png-52f571700911267c6d2ee48161109aa3.ctex"]
 
 [params]
 

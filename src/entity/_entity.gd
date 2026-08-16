@@ -35,3 +35,6 @@ func load_components(json: Dictionary = {}) -> void:
 
 func set_map_tile(tile: MapTile) -> void:
 	map_tile = tile
+
+func update_sprite() -> void:
+	map_tile.set_sprite(sprite)

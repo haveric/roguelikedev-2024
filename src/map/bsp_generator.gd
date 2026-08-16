@@ -217,8 +217,8 @@ static func init_2d_array(width, height, value) -> Array:
 	return array
 	
 static func create_beach() -> Rect2i:
-	var beach_size = 3
-	var water_size = 3
+	var beach_size = 6
+	var water_size = 5
 	var shore_size = beach_size + water_size
 	var rect_beach: Rect2i
 	var rect_water: Rect2i
@@ -226,30 +226,47 @@ static func create_beach() -> Rect2i:
 
 	var rand_beach_dir = randi_range(0, 3)
 	if rand_beach_dir == 0: # Left
-		rect_water = Rect2i(0, 0, beach_size, map.height)
-		rect_beach = Rect2i(beach_size, 0, water_size, map.height)
+		rect_water = Rect2i(0, 0, water_size, map.height)
+		rect_beach = Rect2i(water_size, 0, beach_size, map.height)
 		rect_grass = Rect2i(shore_size, 0, map.width - shore_size, map.height)
 	elif rand_beach_dir == 1: # Right
-		rect_water = Rect2i(map.width - beach_size, 0, beach_size, map.height)
-		rect_beach = Rect2i(map.width - shore_size, 0, water_size, map.height)
+		rect_water = Rect2i(map.width - water_size, 0, water_size, map.height)
+		rect_beach = Rect2i(map.width - shore_size, 0, beach_size, map.height)
 		rect_grass = Rect2i(0, 0, map.width - shore_size, map.height)
 	elif rand_beach_dir == 2: # Top
-		rect_water = Rect2i(0, 0, map.width, beach_size)
-		rect_beach = Rect2i(0, beach_size, map.width, water_size)
+		rect_water = Rect2i(0, 0, map.width, water_size)
+		rect_beach = Rect2i(0, water_size, map.width, beach_size)
 		rect_grass = Rect2i(0, shore_size, map.width, map.height - shore_size)
 	else: # Bottom
-		rect_water = Rect2i(0, map.height - beach_size, map.width, beach_size)
-		rect_beach = Rect2i(0, map.height - shore_size, map.width, water_size)
+		rect_water = Rect2i(0, map.height - water_size, map.width, water_size)
+		rect_beach = Rect2i(0, map.height - shore_size, map.width, beach_size)
 		rect_grass = Rect2i(0, 0, map.width, map.height - shore_size)
 
 	var player_position = map.player.components.position
-	player_position.x = randi_range(rect_beach.position.x, rect_beach.position.x + rect_beach.size.x - 1)
-	player_position.y = randi_range(rect_beach.position.y, rect_beach.position.y + rect_beach.size.y - 1)
+	player_position.x = randi_range(rect_water.position.x, rect_water.position.x + rect_water.size.x - 1)
+	player_position.y = randi_range(rect_water.position.y, rect_water.position.y + rect_water.size.y - 1)
 
+
+	
 	for i in range(rect_beach.position.x, rect_beach.position.x + rect_beach.size.x):
 		for j in range(rect_beach.position.y, rect_beach.position.y + rect_beach.size.y):
 			var map_tile:MapTile = map.ground_tiles[i][j]
-			map_tile.entity = EntityLoader.create("beach", {"position": {"x": i, "y": j}})
+			
+			var beach_tile_string = "beach_empty"
+			if rand_beach_dir == 0: # Left
+				if i == rect_beach.position.x:
+					beach_tile_string = "beach_w"
+			elif rand_beach_dir == 1: # Right
+				if i == rect_beach.position.x + rect_beach.size.x - 1:
+					beach_tile_string = "beach_e"
+			elif rand_beach_dir == 2: # Top
+				if j == rect_beach.position.y:
+					beach_tile_string = "beach_n"
+			else: # Bottom
+				if j == rect_beach.position.y + rect_beach.size.y - 1:
+					beach_tile_string = "beach_s"
+				
+			map_tile.entity = EntityLoader.create(beach_tile_string, {"position": {"x": i, "y": j}})
 
 	var water_tile_strings
 	if rand_beach_dir == 0 || rand_beach_dir == 1:

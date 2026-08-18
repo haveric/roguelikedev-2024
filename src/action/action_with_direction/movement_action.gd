@@ -12,6 +12,9 @@ func perform(map: Map) -> _Action:
 	var dest_x: int = position.x + dx
 	var dest_y: int = position.y + dy
 
+	if !map.is_in_bounds(dest_x, dest_y):
+		return UnableToPerformAction.new(entity, "Location is outside the map!")
+
 	var furniture_tile: MapTile = map.furniture_tiles[dest_x][dest_y]
 	if furniture_tile:
 		var tile_entity = furniture_tile.entity

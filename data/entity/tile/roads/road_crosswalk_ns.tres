@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://b220ujf5p2ufq"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_mye0g"]
+[ext_resource type="Texture2D" uid="uid://cdw2420uew7t3" path="res://assets/img/rebeccagood/road_crosswalk.png" id="3_620k6"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="4_d6ao4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4vxk"]
+atlas = ExtResource("3_620k6")
+region = Rect2(0, 0, 128, 128)
+
+[resource]
+script = ExtResource("4_d6ao4")
+id = "road_crosswalk_ew"
+name = "Road"
+sprite = SubResource("AtlasTexture_k4vxk")

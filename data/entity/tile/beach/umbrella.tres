@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://m2nc6cx8wseg"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_n3cko"]
+[ext_resource type="Script" uid="uid://dcbbocthlffni" path="res://src/component/components/randomly_place.gd" id="2_6e8gw"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="3_4ybld"]
+[ext_resource type="Script" uid="uid://74etmxcsnikd" path="res://src/component/components/blocks_movement.gd" id="3_aayik"]
+[ext_resource type="Texture2D" uid="uid://dsxywgyucca6m" path="res://assets/img/rebeccagood/beach/umbrella.png" id="4_aayik"]
+[ext_resource type="Script" uid="uid://cjs7n1ybdtboq" path="res://src/component/components/fighter.gd" id="4_m84rn"]
+[ext_resource type="Script" uid="uid://b307wdrekwvn4" path="res://src/component/components/faction.gd" id="5_aayik"]
+
+[sub_resource type="Resource" id="Resource_bsrrc"]
+script = ExtResource("2_6e8gw")
+
+[sub_resource type="Resource" id="Resource_uu4c1"]
+script = ExtResource("3_aayik")
+metadata/_custom_type_script = "uid://74etmxcsnikd"
+
+[sub_resource type="Resource" id="Resource_0omvw"]
+script = ExtResource("4_m84rn")
+base_max_hp = 1
+transform_on_death = "umbrella_broken"
+metadata/_custom_type_script = "uid://cjs7n1ybdtboq"
+
+[sub_resource type="Resource" id="Resource_m84rn"]
+script = ExtResource("5_aayik")
+factions = Array[String](["neutral"])
+enemies = Array[String](["player"])
+metadata/_custom_type_script = "uid://b307wdrekwvn4"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll3r7"]
+atlas = ExtResource("4_aayik")
+region = Rect2(0, 0, 54, 54)
+
+[resource]
+script = ExtResource("3_4ybld")
+id = "umbrella"
+name = "Umbrella"
+sprite = SubResource("AtlasTexture_ll3r7")
+default_components = Array[ExtResource("1_n3cko")]([SubResource("Resource_bsrrc"), SubResource("Resource_uu4c1"), SubResource("Resource_0omvw"), SubResource("Resource_m84rn")])

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Tile" format=3 uid="uid://cc3kbq37a1pn1"]
+
+[ext_resource type="Script" uid="uid://dgdqym0o8h0sn" path="res://src/component/_exportable_component.gd" id="1_eckbx"]
+[ext_resource type="Script" uid="uid://dfbw1j64uwujj" path="res://src/entity/tile.gd" id="2_uop44"]
+[ext_resource type="Texture2D" uid="uid://csefchn5pnwb8" path="res://assets/img/rebeccagood/beach/beach.png" id="3_kqs2d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p08qb"]
+atlas = ExtResource("3_kqs2d")
+region = Rect2(128, 128, 128, 128)
+filter_clip = true
+
+[resource]
+script = ExtResource("2_uop44")
+id = "beach_empty"
+name = "Beach"
+sprite = SubResource("AtlasTexture_p08qb")

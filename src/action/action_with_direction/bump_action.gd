@@ -20,6 +20,12 @@ func perform(map: Map) -> _Action:
 		return MeleeAction.new(entity, dx, dy, blocking_entity).perform(map)
 
 	var furniture_tile: MapTile = map.furniture_tiles[dest_x][dest_y]
+	if furniture_tile.entity:
+		if furniture_tile.entity.components.has("fighter"):
+			if furniture_tile.entity.components.has("blocks_movement"):
+				if furniture_tile.entity.components.get("blocks_movement").blocks_movement:
+					return MeleeAction.new(entity, dx, dy, furniture_tile.entity).perform(map)
+			
 	var ground_tile: MapTile = map.ground_tiles[dest_x][dest_y]
 	if furniture_tile.entity || ground_tile.entity:
 		return MovementAction.new(entity, dx, dy).perform(map)

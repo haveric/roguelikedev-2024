@@ -5,6 +5,10 @@ var visible_items: Array
 var previously_visible_shroud: Array
 var previously_visible_actors: Array
 var visible_shroud: Array
+var left: int
+var right: int
+var top: int
+var bottom: int
 var rect: Rect2i
 
 func __init() -> void:
@@ -13,6 +17,10 @@ func __init() -> void:
 func teardown() -> void:
 	previously_visible_shroud = []
 	previously_visible_actors = []
+	left = 0
+	right = 0
+	top = 0
+	bottom = 0
 	clear_visible()
 
 func clear_visible() -> void:
@@ -25,10 +33,10 @@ func compute(map: Map, x: int, y: int, radius: int) -> void:
 	previously_visible_actors = visible_actors
 	clear_visible()
 
-	var left = max(0, x - radius)
-	var right = min(map.width, x + radius + 1)
-	var top = max(0, y - radius)
-	var bottom = min(map.height, y + radius + 1)
+	left = max(0, x - radius)
+	right = min(map.width, x + radius + 1)
+	top = max(0, y - radius)
+	bottom = min(map.height, y + radius + 1)
 	var start = Vector2i(left, top)
 	var end = Vector2i(right, bottom)
 	rect = Rect2i(start, end - start)
@@ -45,6 +53,11 @@ func add_visible_shroud(tile) -> void:
 	if !visible_shroud.has(tile):
 		visible_shroud.append(tile)
 
+func reveal_map(map) -> void:
+	for i in range(0, map.width):
+		for j in range(0, map.height):
+			explore_tile(map, i, j)
+		
 func explore_tile(map, x, y) -> void:
 	if map.is_in_bounds(x, y):
 		add_visible_shroud(map.shroud_tiles[x][y])

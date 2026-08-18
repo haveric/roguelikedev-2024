@@ -1,6 +1,7 @@
 class_name ConnectedTexture extends _ExportableComponent
 
 @export var orthogonal_texture: AtlasTexture
+@export var connected_tile_ids: Array[String]
 @export var tile_size = 128
 
 func _init(json: Dictionary = {}) -> void:
@@ -32,10 +33,10 @@ func get_sprite(map: Map, tiles: Array, x: int, y: int) -> Texture2D:
 		if y + 1 < map.height:
 			bottom_tile = tiles[x][y+1]
 
-		var left = left_tile && left_tile.entity && left_tile.entity.id == entity_id
-		var right = right_tile && right_tile.entity && right_tile.entity.id == entity_id
-		var top = top_tile && top_tile.entity && top_tile.entity.id == entity_id
-		var bottom = bottom_tile && bottom_tile.entity && bottom_tile.entity.id == entity_id
+		var left = left_tile && left_tile.entity && (left_tile.entity.id == entity_id || left_tile.entity.id in connected_tile_ids)
+		var right = right_tile && right_tile.entity && (right_tile.entity.id == entity_id || right_tile.entity.id in connected_tile_ids)
+		var top = top_tile && top_tile.entity && (top_tile.entity.id == entity_id || top_tile.entity.id in connected_tile_ids)
+		var bottom = bottom_tile && bottom_tile.entity && (bottom_tile.entity.id == entity_id || bottom_tile.entity.id in connected_tile_ids)
 
 		if left && right && top && bottom:
 			atlas_texture.region = get_rect(1, 1) # Center

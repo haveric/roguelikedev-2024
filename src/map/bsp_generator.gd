@@ -17,6 +17,56 @@ static func generate(_map: Map) -> void:
 
 	for i in range(grass_rect.position.x, grass_rect.end.x):
 		for j in range(grass_rect.position.y, grass_rect.end.y):
+			
+			var furniture_tile:MapTile = map.furniture_tiles[i][j]
+			if furniture_tile.entity:
+				if furniture_tile.entity.id == "road":
+					var set_crosswalk = false
+					if !set_crosswalk && map.is_in_bounds(i - 1, j - 1) && map.is_in_bounds(i + 1, j - 1):
+						var entity_nw = map.furniture_tiles[i - 1][j - 1].entity
+						var entity_n = map.furniture_tiles[i][j - 1].entity
+						var entity_ne = map.furniture_tiles[i + 1][j - 1].entity
+						
+						if entity_nw && entity_nw.id == "road" && entity_n && entity_n.id == "road" && entity_ne && entity_ne.id == "road":
+							var rand = randi_range(0, 100)
+							if rand < 20:
+								furniture_tile.set_entity(EntityLoader.create("road_crosswalk_ns", {"position": {"x": i, "y": j}}))
+								set_crosswalk = true
+								
+					if !set_crosswalk && map.is_in_bounds(i - 1, j + 1) && map.is_in_bounds(i + 1, j + 1):
+						var entity_sw = map.furniture_tiles[i - 1][j + 1].entity
+						var entity_s = map.furniture_tiles[i][j + 1].entity
+						var entity_se = map.furniture_tiles[i + 1][j + 1].entity
+						
+						if entity_sw && entity_sw.id == "road" && entity_s && entity_s.id == "road" && entity_se && entity_se.id == "road":
+							var rand = randi_range(0, 100)
+							if rand < 20:
+								furniture_tile.set_entity(EntityLoader.create("road_crosswalk_ns", {"position": {"x": i, "y": j}}))
+								set_crosswalk = true
+								
+					if !set_crosswalk && map.is_in_bounds(i - 1, j - 1) && map.is_in_bounds(i - 1, j + 1):
+						var entity_nw = map.furniture_tiles[i - 1][j - 1].entity
+						var entity_w = map.furniture_tiles[i - 1][j].entity
+						var entity_sw = map.furniture_tiles[i - 1][j + 1].entity
+						
+						if entity_nw && entity_nw.id == "road" && entity_w && entity_w.id == "road" && entity_sw && entity_sw.id == "road":
+							var rand = randi_range(0, 100)
+							if rand < 20:
+								furniture_tile.set_entity(EntityLoader.create("road_crosswalk_ew", {"position": {"x": i, "y": j}}))
+								set_crosswalk = true
+					
+					if !set_crosswalk && map.is_in_bounds(i + 1, j - 1) && map.is_in_bounds(i + 1, j + 1):
+						var entity_ne = map.furniture_tiles[i + 1][j - 1].entity
+						var entity_e = map.furniture_tiles[i + 1][j].entity
+						var entity_se = map.furniture_tiles[i + 1][j + 1].entity
+						
+						if entity_ne && entity_ne.id == "road" && entity_e && entity_e.id == "road" && entity_se && entity_se.id == "road":
+							var rand = randi_range(0, 100)
+							if rand < 20:
+								furniture_tile.set_entity(EntityLoader.create("road_crosswalk_ew", {"position": {"x": i, "y": j}}))
+								set_crosswalk = true
+						
+			
 			var map_tile:MapTile = map.ground_tiles[i][j]
 			if !map_tile.entity:
 				map_tile.set_entity(EntityLoader.create("grass_empty", {"position": {"x": i, "y": j}}))
